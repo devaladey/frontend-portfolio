@@ -1,0 +1,215 @@
+import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { useScrollFade } from '../hooks/useScrollFade';
+
+interface Project {
+  title: string;
+  tag: string;
+  problem: string;
+  solution: string;
+  features: string[];
+  stack: string[];
+  github: string;
+  accent: string;
+  featured?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: 'DesignKit',
+    tag: 'Component Library',
+    problem: 'Teams at scale rebuild the same UI patterns repeatedly — wasting weeks on buttons, modals, and form states instead of shipping product.',
+    solution: 'A fully typed, themeable React component library with 60+ primitives, Storybook documentation, and a first-class accessibility layer.',
+    features: [
+      'Zero-dependency core with tree-shakeable exports',
+      'CSS custom property theming with dark mode support',
+      'WAI-ARIA compliant interactive components',
+      'Automated visual regression tests via Chromatic',
+      'Published to npm with automated semantic releases',
+    ],
+    stack: ['React', 'TypeScript', 'CSS Modules', 'Storybook', 'Vitest'],
+    github: 'https://github.com',
+    accent: '#6366F1',
+    featured: true,
+  },
+  {
+    title: 'Pulseboard',
+    tag: 'Analytics SPA',
+    problem: 'Product teams need real-time visibility into user behavior, but dashboards are slow to load and painful to navigate under high data volume.',
+    solution: 'A high-performance analytics dashboard that renders thousands of data points with virtualized charts, instant filtering, and sub-100ms interactions.',
+    features: [
+      'Virtualized charts for 50k+ data point datasets',
+      'Real-time updates via WebSocket subscriptions',
+      'Client-side query engine with memoized aggregations',
+      'Responsive grid layout with drag-to-resize panels',
+    ],
+    stack: ['React', 'TypeScript', 'Zustand', 'Recharts', 'Supabase'],
+    github: 'https://github.com',
+    accent: '#22C55E',
+  },
+  {
+    title: 'Collab',
+    tag: 'Real-time Editor',
+    problem: 'Remote teams working on shared documents face sync conflicts, laggy cursors, and unreliable presence indicators.',
+    solution: 'A collaborative text editor with operational transform–based sync, live cursors, and a conflict-free merging model that works offline-first.',
+    features: [
+      'Operational Transform engine for conflict-free edits',
+      'Presence indicators with user cursors and selections',
+      'Offline support with background sync on reconnect',
+      'Document history with per-change diff viewer',
+    ],
+    stack: ['React', 'TypeScript', 'Y.js', 'WebSockets', 'IndexedDB'],
+    github: 'https://github.com',
+    accent: '#F59E0B',
+  },
+  {
+    title: 'Storefront',
+    tag: 'E-commerce Platform',
+    problem: 'Merchants launching independently need a performant, SEO-ready storefront without the complexity of Shopify customization or the cost of custom builds.',
+    solution: 'A headless e-commerce SPA with static-first rendering, optimistic cart updates, and Lighthouse scores above 95 on all metrics.',
+    features: [
+      'Static product pages with ISR-style cache invalidation',
+      'Optimistic cart with local-first state and conflict resolution',
+      'Image optimization pipeline with AVIF/WebP delivery',
+      'Core Web Vitals: LCP < 1.8s, FID < 50ms, CLS < 0.05',
+    ],
+    stack: ['React', 'TypeScript', 'Vite', 'TanStack Query', 'Tailwind'],
+    github: 'https://github.com',
+    accent: '#EC4899',
+  },
+];
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  if (project.featured) {
+    return (
+      <div
+        className="group relative col-span-full p-8 rounded-2xl dark:bg-[#111827] bg-white border dark:border-white/[0.08] border-slate-200/80 hover:border-primary/40 card-hover dark:hover:shadow-2xl dark:hover:shadow-primary/5 hover:shadow-xl hover:shadow-primary/5 overflow-hidden"
+        style={{ animationDelay: `${index * 0.1}s` }}
+      >
+        <div
+          className="absolute top-0 right-0 w-[400px] h-[300px] pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(circle at 100% 0%, ${project.accent}22 0%, transparent 70%)`,
+          }}
+        />
+        <div className="relative z-10 grid md:grid-cols-2 gap-8 items-start">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: project.accent }}>{project.tag}</span>
+              <span className="px-2 py-0.5 text-xs rounded-full dark:bg-white/[0.06] bg-slate-100 dark:text-gray-400 text-slate-500 border dark:border-white/[0.08] border-slate-200">Featured</span>
+            </div>
+            <h3 className="text-2xl font-bold dark:text-white text-slate-900 mb-3">{project.title}</h3>
+            <p className="text-sm dark:text-gray-500 text-slate-500 leading-relaxed mb-4">{project.problem}</p>
+            <p className="text-sm dark:text-gray-300 text-slate-700 leading-relaxed">{project.solution}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold tracking-widest uppercase dark:text-gray-500 text-slate-400 mb-4">Key Features</p>
+            <ul className="space-y-2.5 mb-6">
+              {project.features.map(f => (
+                <li key={f} className="flex items-start gap-2.5 text-sm dark:text-gray-400 text-slate-600">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: project.accent }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.stack.map(tech => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 text-xs font-medium rounded-md dark:bg-white/[0.05] bg-slate-100 dark:text-gray-400 text-slate-500 dark:border-white/[0.08] border border-slate-200"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+            >
+              <Github size={15} />
+              View on GitHub
+              <ArrowUpRight size={13} />
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="group relative p-6 rounded-xl dark:bg-[#111827] bg-white border dark:border-white/[0.08] border-slate-200/80 hover:border-opacity-50 card-hover dark:hover:shadow-xl hover:shadow-lg overflow-hidden flex flex-col"
+      style={{ borderColor: undefined }}
+    >
+      <div
+        className="absolute inset-x-0 top-0 h-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: `linear-gradient(90deg, transparent, ${project.accent}60, transparent)` }}
+      />
+      <div className="mb-4">
+        <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: project.accent }}>
+          {project.tag}
+        </span>
+      </div>
+      <h3 className="text-lg font-bold dark:text-white text-slate-900 mb-2">{project.title}</h3>
+      <p className="text-sm dark:text-gray-500 text-slate-500 leading-relaxed mb-4 flex-grow">{project.solution}</p>
+      <ul className="space-y-2 mb-5">
+        {project.features.slice(0, 3).map(f => (
+          <li key={f} className="flex items-start gap-2 text-xs dark:text-gray-400 text-slate-600">
+            <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: project.accent }} />
+            {f}
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {project.stack.map(tech => (
+          <span
+            key={tech}
+            className="px-2 py-0.5 text-xs font-medium rounded dark:bg-white/[0.05] bg-slate-100 dark:text-gray-500 text-slate-500 dark:border-white/[0.06] border border-slate-200"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200 mt-auto"
+      >
+        <Github size={13} />
+        GitHub
+        <ExternalLink size={11} />
+      </a>
+    </div>
+  );
+}
+
+export default function Projects() {
+  const ref = useScrollFade<HTMLDivElement>();
+
+  return (
+    <section id="projects" className="dark:bg-[#0B0F17] bg-[#F8FAFC] py-28">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div ref={ref} className="section-fade">
+          <div className="mb-16">
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-3">Projects</p>
+            <h2 className="text-3xl font-bold dark:text-white text-slate-900 mb-4">
+              Real problems,<br />
+              <span className="dark:text-gray-400 text-slate-500 font-normal">production-grade solutions.</span>
+            </h2>
+            <p className="text-base dark:text-gray-500 text-slate-500 max-w-xl">
+              Each project started with a real-world pain point and ended with something I'd ship to users.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {projects.map((project, i) => (
+              <ProjectCard key={project.title} project={project} index={i} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
