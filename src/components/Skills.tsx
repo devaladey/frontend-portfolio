@@ -11,8 +11,8 @@ const skillGroups: SkillGroup[] = [
     label: 'Frontend',
     color: '#6366F1',
     skills: [
-      'React', 'TypeScript', 'Next.js', 'Vite', 'Tailwind CSS',
-      'CSS Modules', 'Framer Motion', 'React Query', 'Zustand', 'Redux Toolkit',
+      'CSS3', 'React', 'TypeScript', 'Next.js', 'Vite', 'Tailwind CSS',
+      'CSS Modules', 'Framer Motion', 'React Query', 'Redux Toolkit', 'Service Worker'
     ],
   },
   {
@@ -35,16 +35,15 @@ const skillGroups: SkillGroup[] = [
     label: 'Backend & Data',
     color: '#EC4899',
     skills: [
-      'Node.js', 'Supabase', 'PostgreSQL', 'REST APIs', 'GraphQL',
-      'WebSockets', 'tRPC',
+      'Node.js', 'Express.js', 'PostgreSQL', 'REST APIs', 'GraphQL',
+      'WebSockets', 'tRPC', 'Mongodb', 'Prisma ORM', 'Mongoose'
     ],
   },
   {
     label: 'Currently Exploring',
     color: '#38BDF8',
     skills: [
-      'React Server Components', 'WASM', 'View Transitions API',
-      'Edge Functions', 'AI SDK',
+      'MCP Server', 'LLMs', 'RAG', 'AI SDK', 'Rust', 
     ],
   },
 ];

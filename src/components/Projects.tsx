@@ -1,4 +1,4 @@
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { useScrollFade } from '../hooks/useScrollFade';
 
 interface Project {
@@ -11,29 +11,30 @@ interface Project {
   github: string;
   accent: string;
   featured?: boolean;
+  deployedUrl?: string;
 }
 
 const projects: Project[] = [
   {
-    title: 'DesignKit',
-    tag: 'Component Library',
-    problem: 'Teams at scale rebuild the same UI patterns repeatedly — wasting weeks on buttons, modals, and form states instead of shipping product.',
-    solution: 'A fully typed, themeable React component library with 60+ primitives, Storybook documentation, and a first-class accessibility layer.',
+    title: 'Metersense',
+    tag: 'Uptime Monitoring Dashboard',
+    problem: 'Organizations lack a centralized, real-time view of service availability, leading to delayed incident response and poor system reliability visibility.',
+    solution: 'A scalable real-time monitoring dashboard that tracks uptime, response times, and service health with live updates, analytics, and alerting capabilities.',
     features: [
-      'Zero-dependency core with tree-shakeable exports',
-      'CSS custom property theming with dark mode support',
-      'WAI-ARIA compliant interactive components',
-      'Automated visual regression tests via Chromatic',
-      'Published to npm with automated semantic releases',
+      'Real-time service status monitoring with automatic polling',
+      'Uptime percentage and response time analytics with interactive charts',
+      'Instant alert system for downtime detection',
+      'Endpoint management with grouping and categorization',
+      'Historical performance tracking for reliability analysis',
     ],
-    stack: ['React', 'TypeScript', 'CSS Modules', 'Storybook', 'Vitest'],
-    github: 'https://github.com',
-    accent: '#6366F1',
-    featured: true,
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Recharts'],
+    github: 'https://github.com/devaladey/metersense',
+    accent: '#10B981',
+    deployedUrl: 'https://metersense.vercel.app',
   },
   {
-    title: 'Pulseboard',
-    tag: 'Analytics SPA',
+    title: 'CineSync',
+    tag: 'A video Streaming App',
     problem: 'Product teams need real-time visibility into user behavior, but dashboards are slow to load and painful to navigate under high data volume.',
     solution: 'A high-performance analytics dashboard that renders thousands of data points with virtualized charts, instant filtering, and sub-100ms interactions.',
     features: [
@@ -44,6 +45,7 @@ const projects: Project[] = [
     ],
     stack: ['React', 'TypeScript', 'Zustand', 'Recharts', 'Supabase'],
     github: 'https://github.com',
+    deployedUrl: 'https://cine-sync-blue.vercel.app',
     accent: '#22C55E',
   },
   {
@@ -121,16 +123,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 </span>
               ))}
             </div>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200"
-            >
-              <Github size={15} />
-              View on GitHub
-              <ArrowUpRight size={13} />
-            </a>
+            <div className='flex items-center gap-3 mt-auto'>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+              >
+                <Github size={13} />
+                GitHub
+                <ExternalLink size={11} />
+              </a>
+              <a
+                href={project.deployedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+              >
+                <Github size={13} />
+                Deployed Url
+                <ExternalLink size={11} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -171,16 +185,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         ))}
       </div>
-      <a
-        href={project.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200 mt-auto"
-      >
-        <Github size={13} />
-        GitHub
-        <ExternalLink size={11} />
-      </a>
+      <div className='flex items-center gap-3 mt-auto'>
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+        >
+          <Github size={13} />
+          GitHub
+          <ExternalLink size={11} />
+        </a>
+        <a
+          href={project.deployedUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+        >
+          <Github size={13} />
+          Deployed Url
+          <ExternalLink size={11} />
+        </a>
+      </div>
     </div>
   );
 }

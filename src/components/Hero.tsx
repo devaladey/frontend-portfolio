@@ -102,7 +102,7 @@ export default function Hero() {
             <Github size={16} />
           </a>
           <a
-            href="https://linkedin.com/oluwatobiloba-oyedokun"
+            href="https://linkedin.com/in/oluwatobiloba-oyedokun"
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 flex items-center justify-center rounded-lg dark:bg-white/[0.06] bg-slate-100 dark:hover:bg-white/[0.1] hover:bg-slate-200 dark:text-gray-400 text-slate-500 dark:hover:text-white hover:text-slate-900 transition-all duration-200"
