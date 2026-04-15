@@ -8,13 +8,32 @@ interface Project {
   solution: string;
   features: string[];
   stack: string[];
-  github: string;
+  github: string | null;
   accent: string;
   featured?: boolean;
   deployedUrl?: string;
 }
 
 const projects: Project[] = [
+  {
+    title: 'Tasker Platform',
+    tag: 'Service Marketplace Website (Client Project)',
+    problem: 'The client needed a modern, responsive web presence to showcase their service marketplace platform and clearly communicate their value to users.',
+    solution: 'Developed a responsive, multi-page React website with smooth transitions and multi-language support, enabling users to easily explore the platform and understand its offerings.',
+    features: [
+      'Multi-page navigation (Home, About, Contact, and more)',
+      'Smooth page transitions for improved user experience',
+      'Multi-language (i18n) support for broader accessibility',
+      'Fully responsive design across mobile, tablet, and desktop',
+      'Clean and modern UI for clear content presentation',
+      'API integration for dynamic content rendering',
+    ],
+    stack: ['React', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'i18n', 'REST APIs'],
+    github: null, // Client project (private)
+    deployedUrl: 'https://tasker-website.vercel.app/',
+    accent: '#3B82F6',
+    featured: true
+  },
   {
     title: 'Metersense',
     tag: 'Uptime Monitoring Dashboard',
