@@ -206,7 +206,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
       <div className='flex items-center gap-3 mt-auto'>
         <a
-          href={project.github}
+          href={project.github || '#'}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
