@@ -51,6 +51,7 @@ const projects: Project[] = [
     github: null, // Client project (private)
     deployedUrl: 'https://parcel-dispatcher.vercel.app/',
     accent: '#F59E0B',
+    featured: true
   },
   {
     title: 'Metersense',
