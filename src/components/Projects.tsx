@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Link } from 'lucide-react';
 import { useScrollFade } from '../hooks/useScrollFade';
 
 interface Project {
@@ -33,6 +33,24 @@ const projects: Project[] = [
     deployedUrl: 'https://tasker-website.vercel.app/',
     accent: '#3B82F6',
     featured: true
+  },
+  {
+    title: 'Parcel Dispatcher',
+    tag: 'Logistics & Delivery Management Platform (Client Project)',
+    problem: 'The client needed a lightweight logistics system to manage parcel dispatch, user authentication, and delivery coordination in a simple and scalable way.',
+    solution: 'Built a full-featured logistics web application using Next.js that enables users to authenticate, manage parcel dispatch operations, view locations on maps, and interact with a multi-language interface.',
+    features: [
+      'User authentication system for secure access control',
+      'Parcel dispatch workflow for sending and managing deliveries',
+      'Integrated map functionality for location-based tracking and visualization',
+      'Multi-language support for international usability',
+      'Fully responsive UI across mobile, tablet, and desktop devices',
+      'Modern and clean interface built for usability and clarity',
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Maps API', 'i18n', 'Authentication'],
+    github: null, // Client project (private)
+    deployedUrl: 'https://parcel-dispatcher.vercel.app/',
+    accent: '#F59E0B',
   },
   {
     title: 'Metersense',
@@ -143,16 +161,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               ))}
             </div>
             <div className='flex items-center gap-3 mt-auto'>
-              <a
-                href={project.github || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
-              >
-                <Github size={13} />
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+                >
+                <Link size={13} />
                 GitHub
                 <ExternalLink size={11} />
-              </a>
+              </a>)}
               <a
                 href={project.deployedUrl}
                 target="_blank"
@@ -205,23 +224,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         ))}
       </div>
       <div className='flex items-center gap-3 mt-auto'>
-        <a
-          href={project.github || '#'}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
-        >
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
+          >
           <Github size={13} />
           GitHub
           <ExternalLink size={11} />
-        </a>
+        </a>)}
         <a
           href={project.deployedUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200"
         >
-          <Github size={13} />
+          <Link size={13} />
           Deployed Url
           <ExternalLink size={11} />
         </a>
